@@ -1,13 +1,10 @@
+import background from "../images/profile.jpg"
 import * as React from "react"
-import GbiBridged from "./test"
 
 function BriefImgArticle() {
     return (
         <article class="grid grid-cols-3 shadow-md shadow-slate-400 border-2 border-black rounded h-96 w-full">
-            <div class="bg-cover bg-no-repeat bg-center" style={{backgroundImage: `url('../images/profile.jpg')`}}>
-                <div class="w-full">
-                    <GbiBridged />
-                </div>
+            <div class="bg-cover bg-no-repeat bg-center" style={{backgroundImage: `url(${background})`}}>
             </div>
             <div class="flex flex-col col-span-2 p-4">
                 <h1 class="flex-none text-4xl font-mono font-bold border-b">Hi, I'm Brandon...</h1>

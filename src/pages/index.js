@@ -2,7 +2,6 @@ import * as React from "react"
 import MainHeader from "../components/headers"
 import MainFooter from "../components/footers"
 import BriefImgArticle from "../components/articles"
-import GbiBridged from "../components/test"
 
 // markup
 const IndexPage = () => {
