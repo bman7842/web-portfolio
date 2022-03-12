@@ -1,27 +1,21 @@
 import * as React from "react"
-import MainHeader from "./components/headers"
-import MainFooter from "./components/footers"
-import BriefImgArticle from "./components/articles"
-import IndexContent from "./components/indexContent"
+import MainHeader from "../components/headers"
+import MainFooter from "../components/footers"
+import BriefImgArticle from "../components/imgArticle"
+import IndexContent from "../components/indexContent"
 
 //Content:
-import Articles from './content/indexArticles';
-import profileImg from "./images/profile.jpg"
+import { Articles } from '../content/indexData';
+import profileImg from "../images/profile.jpg"
 
 // markup
 const IndexPage = () => {
 
   return (
-    <main>
-      <MainHeader class="w-full"/>
+    <main class="w-full">
+      <MainHeader/>
 
-      <IndexContent class="px-4 mt-8 w-full" data={Articles}/>
-
-      <content class="px-4 mt-8 w-full grid md:grid-cols-6 gap-y-8 gap-x-4 place-items-center">
-        <div class="md:col-start-2 md:col-span-4 w-full">
-          <BriefImgArticle image={profileImg} title="Hi, I'm Brandon" body="More info to come :)"/>
-        </div>
-      </content>
+      <IndexContent data={Articles}/>
 
       <MainFooter/>
     </main>
