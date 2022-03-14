@@ -23,4 +23,4 @@ function BriefImgArticle(props) {
     )
 }
 
-export default BriefImgArticle
+export { BriefImgArticle };

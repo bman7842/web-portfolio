@@ -1,6 +1,37 @@
 import * as React from "react"
-import BriefImgArticle from "../components/imgArticle"
+import { BriefImgArticle } from "./articles"
 
+function GridRow(props) {
+    const data = props.rowData;
+
+    return (
+        <div class={`w-full grid md:grid-cols-${data.length} gap-y-8 gap-x-4 place-items-center`}>
+            {data.map((article, key) => {
+                return(
+                    <div class={`md:col-start-1 sm:w-full`}>
+                        <BriefImgArticle title={article.title} image={article.image} body={article.body}/>
+                    </div>
+                );
+            })}
+        </div>
+    )
+}
+
+function ArticleGrid(props) {
+    const data = props.data;
+
+    return (
+        <content class="w-full">
+            {data.map((row, key) => {
+                return(
+                    <GridRow rowData={row}/>
+                )
+            })}
+        </content>
+    );
+}
+
+/*
 function IndexContent(props) {
     const articles = props.data;
     var maxRowLength = null;
@@ -43,5 +74,6 @@ function IndexContent(props) {
         </content>
     )
 }
+*/
 
-export default IndexContent;
+export { GridRow, ArticleGrid };
