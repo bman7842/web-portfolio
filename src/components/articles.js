@@ -6,7 +6,7 @@ function BriefImgArticle(props) {
     const body = props.body;
 
     return (
-        <article class="grid grid-cols-3 shadow-md shadow-slate-400 border-2 border-black rounded h-96 w-full">
+        <article class="grid grid-cols-3 shadow-md shadow-slate-400 border-2 border-black rounded sm:h-72 h-96 w-full">
             <div class="bg-cover bg-no-repeat bg-center" style={{backgroundImage: `url(${image})`}}>
             </div>
             <div class="flex flex-col col-span-2 p-4">

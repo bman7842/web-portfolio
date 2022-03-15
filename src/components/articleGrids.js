@@ -5,10 +5,10 @@ function GridRow(props) {
     const data = props.rowData;
 
     return (
-        <div class={`w-full grid md:grid-cols-${data.length} gap-y-8 gap-x-4 place-items-center`}>
+        <div class="w-full lg:flex lg:space-x-4 lg:mt-4 px-4">
             {data.map((article, key) => {
                 return(
-                    <div class={`md:col-start-1 sm:w-full`}>
+                    <div class={ ((data.length==1) ? "lg:w-2/3 w-full" : "lg:flex-1")+" lg:mt-0 mt-4 md:w-3/4 mx-auto"} >
                         <BriefImgArticle title={article.title} image={article.image} body={article.body}/>
                     </div>
                 );
