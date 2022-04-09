@@ -20,14 +20,14 @@ export const Articles = [
         {
             title: "Data Analytics",
             image: SCNLabIMG,
-            body: "I've worked extensively with the neuroscience community here in Iowa City to develop tools utilized in furthuring data collection and analysis for MRI and neuroscience research."
+            body: "I've worked extensively with the department of Psychology at the University of Iowa to develop tools utilized in furthuring data collection and analysis for MRI and neuroscience research."
         }
     ],
     [
         {
             title: "Aerospace",
             image: CollinsIMG,
-            body: "to-do"
+            body: "Led investigation into false SELCAL detection. Worked on DSP processors and utilized signal processing concepts to engineer a resolution."
         }
     ]
 ]

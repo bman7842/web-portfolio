@@ -1,7 +1,6 @@
 import * as React from "react"
 import MainHeader from "../components/headers"
 import MainFooter from "../components/footers"
-import { BriefImgArticle } from "../components/articles"
 import { ArticleGrid } from "../components/articleGrids"
 
 //Content:
@@ -13,8 +12,6 @@ function IndexArticles(props) {
 
   return (
       <div class="w-full max-w-screen-xl mx-auto mt-8">
-
-
           <ArticleGrid data={Articles}/>
       </div>
   );
@@ -24,10 +21,8 @@ const IndexPage = () => {
 
   return (
     <main class="w-full">
-      <MainHeader/>
-
+      <MainHeader selected="home"/>
       <IndexArticles/>
-
       <MainFooter/>
     </main>
   )
