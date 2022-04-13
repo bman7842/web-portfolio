@@ -8,9 +8,9 @@ const NavButton = (props) => {
     const linkTo = props.to;
 
     return (
-        <button class={"py-2 px-2 font-semibold " + (selected===label ? "border-b-4 border-cyan-800 text-cyan-700" : "text-gray-500 hover:text-cyan-700 transition duration-300")}>
+        <div class={"py-2 px-2 font-semibold " + (selected===label ? "border-b-4 border-cyan-800 text-cyan-700" : "text-gray-500 hover:text-cyan-700 transition duration-300")}>
             <Link to={linkTo}>{props.children}</Link>
-        </button>
+        </div>
     )
 }
 
@@ -22,11 +22,10 @@ const DropDownNavButton = (props) => {
 
     return (
         <div class="relative group">
-            <button class={"w-full px-2 py-2 mt-2 md:w-auto md:inline mt-0 font-semibold "+ (selected===label ? "border-b-4 border-cyan-800 text-cyan-700" : "text-gray-500 hover:text-cyan-700 transition duration-300")}>
+            <div class={"w-full px-2 py-2 mt-2 md:w-auto md:inline mt-0 font-semibold "+ (selected===label ? "border-b-4 border-cyan-800 text-cyan-700" : "text-gray-500 hover:text-cyan-700 transition duration-300")}>
                 <Link class="w-full h-full" to={linkTo}>{text}</Link>
-            </button>
+            </div>
             <div class="absolute z-10 hidden bg-grey-200 group-hover:block">
-            
                 <div class="w-32 rounded p-2 pb-2 bg-white bg-gray-200 shadow-lg">
                 <ul class="grid place-items-center grid-cols-1 gap-2">
                     {props.children}

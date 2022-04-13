@@ -3,11 +3,10 @@ import { StaticImage } from "gatsby-plugin-image"
 
 const MainFooter = () => {
     return(
-        <footer class="mt-12 p-2 border-t">
+        <footer class="mt-12 p-2">
             <div class="flex items-center justify-between">
                 <div class="p-4 inline-flex items-baseline text-gray-500 text-xs">
-                    <span>Designed by Brandon, built in Iowa City</span>
-                    <StaticImage src="../images/map-marker.svg" alt="" class="self-center w-3 mx-1 opacity-60" />
+                    <span>Designed by Brandon, built in Iowa City 📍</span>
                 </div>
 
                 <div class="flex items-center mx-8 space-x-2">
