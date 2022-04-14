@@ -13,7 +13,7 @@ function BriefImgArticle(props) {
                 <h1 class="flex-none text-4xl font-mono font-bold border-b">{title}</h1>
                 <p class="flex-none">{body}</p>
                 <div class="grow grid place-items-center">
-                <button class="border-2 border-gray-400 px-2 rounded-lg bg-sky-200 drop-shadow-md ease-in transition ease-in-out hover:scale-110 hover:bg-sky-300 hover:drop-shadow-md hover:border-gray-600 duration-100">
+                <button class="border-2 border-gray-400 px-2 rounded-lg bg-sky-200 drop-shadow-md ease-in-out transition ease-in-out hover:scale-110 hover:bg-sky-300 hover:drop-shadow-md hover:border-gray-600 duration-100">
                     <b>More Info</b>
                 </button>
                 </div>

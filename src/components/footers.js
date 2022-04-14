@@ -3,7 +3,7 @@ import { StaticImage } from "gatsby-plugin-image"
 
 const MainFooter = () => {
     return(
-        <footer class="mt-12 p-2">
+        <footer class="p-2">
             <div class="flex items-center justify-between">
                 <div class="p-4 inline-flex items-baseline text-gray-500 text-xs">
                     <span>Designed by Brandon, built in Iowa City 📍</span>

@@ -12,7 +12,7 @@ import { Articles } from '../content/indexData';
 function IndexArticles(props) {
 
   return (
-      <div class="w-full max-w-screen-xl mx-auto mt-8">
+      <div class="w-full max-w-screen-xl mx-auto my-8">
           <ArticleGrid data={Articles}/>
       </div>
   );
