@@ -2,8 +2,8 @@ const path = require(`path`)
 
 module.exports = {
     siteMetadata: {
-      title: `new`,
-        siteUrl: `https://www.yourdomain.tld`,
+      title: ``,
+        siteUrl: `https://www.thisisbrandon.xyz`,
     },
     plugins: [
       {
