@@ -15,7 +15,7 @@ export const Articles = [
         {
             title: "University of Iowa",
             image: UIowaIMG,
-            body: "Currently enrolled at the University of Iowa. Majoring in Computer Science and Engineering with a minor in economics."
+            body: "Majoring in Computer Science and Engineering with a minor in economics."
         },
         {
             title: "Data Analytics",
@@ -27,7 +27,7 @@ export const Articles = [
         {
             title: "Aerospace",
             image: CollinsIMG,
-            body: "Led investigation into false SELCAL detection. Worked on DSP processors and utilized signal processing concepts to engineer a resolution."
+            body: "Led the team in designing and prototyping a software solution for a hardware issue reported on airbus a220. Worked frequently with C, C++, assembly code, and data collection tools to analyze hardware behavior and engineer a solution. Heavy emphasis on signal processing concepts such as Goertzel’s formula and the fast fourier transform. Modernized the team’s hardware testing tools by redeveloping API and emphasizing reusability. Also assisted in creating custom C++ JSON parsing library for a product in development."
         }
     ]
 ]

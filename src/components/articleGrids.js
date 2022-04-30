@@ -1,5 +1,5 @@
 import * as React from "react"
-import { BriefImgArticle } from "./articles"
+import { ImgArticle } from "./articles"
 
 function GridRow(props) {
     const data = props.rowData;
@@ -9,7 +9,7 @@ function GridRow(props) {
             {data.map((article, key) => {
                 return(
                     <div class={ ((data.length===1) ? "lg:w-2/3 w-full" : "lg:flex-1")+" lg:mt-0 mt-8 md:w-3/4 mx-auto"} >
-                        <BriefImgArticle title={article.title} image={article.image} body={article.body}/>
+                        <ImgArticle title={article.title} image={article.image} body={article.body} type={article.type} button={article.button}/>
                     </div>
                 );
             })}
