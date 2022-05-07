@@ -12,13 +12,14 @@ const ProjectsPage = () => {
       <main class="w-full">
         <MainHeader selected="projects"/>
 
-        <div class="w-full max-w-screen-xl mx-auto my-8">
-          <ArticleGrid data={projectInfo}/>
-        </div>
 
         <MainFooter/>
       </main>
     )
   }
-  
+  /**
+   *         <div class="w-full max-w-screen-xl mx-auto my-8">
+          <ArticleGrid data={projectInfo}/>
+        </div>
+   */
   export default ProjectsPage  

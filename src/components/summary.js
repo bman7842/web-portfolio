@@ -34,13 +34,13 @@ function Summary({ data }) {
     }
 
     return (
-        <article class="transition ease-in duration-75 bg-gray-100 grid grid-cols-3 shadow-slate-600 shadow-md hover:shadow-lg hover:shadow-slate-600 hover:scale-101 border-slate-400 rounded-lg border sm:h-72 h-96 w-full">
+        <article class="transition ease-in duration-75 bg-stone-100 grid grid-cols-3 shadow-slate-600 shadow-md hover:shadow-lg hover:shadow-slate-600 hover:scale-101 border-slate-400 rounded-lg border sm:h-72 h-96 w-full">
             {hasImg &&
                 <div class="rounded-lg bg-cover bg-no-repeat bg-center" style={{backgroundImage: `url(${img})`}}/>
             }
             <SummaryWrapper>
-                <h1 class="flex-none text-4xl font-mono font-bold border-b">{title}</h1>
-                <p class="flex-none">{body}</p>
+                <h1 class="flex-none text-xl font-sans font-bold border-b">{title}</h1>
+                <p class="flex-none font-sans font-light text-md">{body}</p>
             </SummaryWrapper>
         </article>
     )
