@@ -1,6 +1,7 @@
 import * as React from "react"
 import { StaticImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
+import SiteMeta from "./metaData"
 
 const NavButton = (props) => {
     const selected = props.selected;
@@ -9,7 +10,8 @@ const NavButton = (props) => {
 
     return (
         <Link to={linkTo}>
-            <div class={"py-1 px-2 font-semibold border-cyan-800 " + (selected===label ? "border-b-4 text-cyan-700" : "hover:border-dotted hover:border-b-4 text-gray-500 hover:text-cyan-700 transition duration-300")}>
+            <div class={"font-mono font-semibold py-1 px-2 border-cyan-800 " + (selected===label ? "border-b-4 text-cyan-700" 
+            : "group-hover:text-cyan-700 group-hover:border-dotted group-hover:border-b-4 hover:border-dotted hover:border-b-4 text-gray-500 hover:text-cyan-700 transition duration-300")}>
                 {props.children}
             </div>
         </Link>
@@ -24,11 +26,9 @@ const DropDownNavButton = (props) => {
 
     return (
         <div class="relative group">
-            <Link class="w-full h-full" to={linkTo}>
-                <div class={"py-1 px-2 font-semibold border-cyan-800 " + (selected===label ? "border-b-4 text-cyan-700" : "group-hover:border-dotted group-hover:border-b-4 text-gray-500 hover:text-cyan-700 transition duration-300")}>
-                    {text}
-                </div>
-            </Link>
+            <NavButton selected={selected} label={label} to={linkTo}>
+                {text}
+            </NavButton>
             <div class="absolute left-0 right-0 hidden justify-center overflow-visible z-10 group-hover:flex">
                 <div>
                     <div class="w-32 rounded px-2 py-2 bg-gray-200 shadow-lg border border-cyan-800">
@@ -80,6 +80,7 @@ const MainHeader = (props) => {
 
     return (
         <header class="w-full">
+            <SiteMeta rel={selected}></SiteMeta>
             <div class="w-full grid place-items-center">
                 <StaticImage href="index.html" class="w-96" src="../images/logo.png" />
             </div>

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ImgArticle } from "./articles"
+import { Summary } from "./summary"
 
 function GridRow(props) {
     const data = props.rowData;
@@ -9,7 +9,7 @@ function GridRow(props) {
             {data.map((article, key) => {
                 return(
                     <div class={ ((data.length===1) ? "lg:w-2/3 w-full" : "lg:flex-1")+" lg:mt-0 mt-8 md:w-3/4 mx-auto"} >
-                        <ImgArticle title={article.title} image={article.image} body={article.body} type={article.type} button={article.button}/>
+                        <Summary article={article}/>
                     </div>
                 );
             })}
@@ -17,7 +17,7 @@ function GridRow(props) {
     )
 }
 
-function ArticleGrid(props) {
+function SummaryGrid(props) {
     const data = props.data;
 
     return (
@@ -31,4 +31,4 @@ function ArticleGrid(props) {
     );
 }
 
-export { GridRow, ArticleGrid };
+export { GridRow, SummaryGrid };
