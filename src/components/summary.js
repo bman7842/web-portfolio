@@ -1,4 +1,5 @@
 import * as React from "react"
+import { SummaryButton } from "./buttons"
 
 /**
  * Renders a summary component based on inputted data following summary data structure.
@@ -68,7 +69,14 @@ function Summary({ data }) {
         const hasButton = (button!==undefined);
 
         return (
-            <p class="flex-none font-sans font-light text-lg">{body}</p>
+            <div className="grow grid">
+                <p class="flex-none font-sans font-light text-lg">{body}</p>
+                {hasButton &&
+                    <div class="m-auto place-items-center">
+                        <SummaryButton data={button}/>
+                    </div>
+                }
+            </div>
         )
     }
 
@@ -79,7 +87,7 @@ function Summary({ data }) {
             }
             <SummaryWrapper hasImg={hasImg}>
                 <SummaryHeader title={title} experience={experience} />
-                <SummaryBody body={body} />
+                <SummaryBody body={body} button={button} />
             </SummaryWrapper>
         </article>
     )
