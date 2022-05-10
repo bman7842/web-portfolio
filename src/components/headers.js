@@ -1,6 +1,7 @@
 import * as React from "react"
 import { StaticImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
+import SiteMeta from "./metaData"
 
 const NavButton = (props) => {
     const selected = props.selected;
@@ -79,6 +80,7 @@ const MainHeader = (props) => {
 
     return (
         <header class="w-full">
+            <SiteMeta rel={selected}></SiteMeta>
             <div class="w-full grid place-items-center">
                 <StaticImage href="index.html" class="w-96" src="../images/logo.png" />
             </div>
