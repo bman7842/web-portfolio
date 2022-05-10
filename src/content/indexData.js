@@ -8,26 +8,38 @@ export const Summaries = [
         {
             title: "Hi, I'm Brandon...",
             img: ProfileIMG,
-            body: "More info to come :)"
+            body: "",
         }
     ],
     [
         {
             title: "University of Iowa",
             img: UIowaIMG,
-            body: "Majoring in Computer Science and Engineering with a minor in economics."
+            body: "TODO",
+            experience: {
+                date: "8/2019 - current",
+                subtitle: "Computer Science and Engineering",
+            }
         },
         {
-            title: "Data Analytics",
+            title: "Kliemann Laboratories",
             img: SCNLabIMG,
-            body: "I've worked extensively with the department of Psychology at the University of Iowa to develop tools utilized in furthuring data collection and analysis for MRI and neuroscience research."
+            body: "Built backend data processing pipelines for de-noising and filtering MRI scans. Wrote tools for retrieving and sorting subject data later used to produce metrics and diagrams for research.",
+            experience: {
+                date: "5/2021 - 1/2022",
+                subtitle: "Scientific Programmer",
+            }
         }
     ],
     [
         {
-            title: "Aerospace",
+            title: "Collins Aerospace",
             img: CollinsIMG,
-            body: "Led the team in designing and prototyping a software solution for a hardware issue reported on airbus a220. Worked frequently with C, C++, assembly code, and data collection tools to analyze hardware behavior and engineer a solution. Heavy emphasis on signal processing concepts such as Goertzel’s formula and the fast fourier transform. Modernized the team’s hardware testing tools by redeveloping API and emphasizing reusability. Also assisted in creating custom C++ JSON parsing library for a product in development."
+            body: "Led team in designing and prototyping a solution to hardware fault in airbus a220 avionics. Created data collection tools to simulate hardware behavior reducing time spent in lab. Built new automated testing software which replaced a previously manual process and also allowed tests to be written in CSV, rather than hard coded.",
+            experience: {
+                date: "5/2021 - 1/2022",
+                subtitle: "Software Engineer",
+            }
         }
     ]
 ]

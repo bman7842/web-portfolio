@@ -1,46 +1,85 @@
 import * as React from "react"
 
 /**
- * Types of summaries available.
- * default = a default summary containing a title and body.
- * experience = a summary formatted to contain experience. Better structured for information
- * such as date experience occured, title, and other experience related information.
- */
-const SummaryType = {
-    DEFAULT: "default",
-    EXPERIENCE: "experience",
-}
-
-/**
  * Renders a summary component based on inputted data following summary data structure.
  * @param {*} data 
  */
 function Summary({ data }) {
     const title = data.title;
     const body = data.body;
-    const type = (data.type === undefined ? SummaryType.DEFAULT : data.type);
+    const experience = data.experience;
     const img = data.img;
     const button = data.button;
 
     const hasImg = (img!==undefined);
-    const hasButton = (button!==undefined);
 
-    const SummaryWrapper = (props) => {
+    const SummaryWrapper = ({ hasImg, children }) => {
+
         return (
             <div className={(hasImg ? 'col-span-2': 'col-span-3')+' flex flex-col p-4'}>
-                {props.children}
+                {children}
             </div>
         )
     }
 
+    const SummaryHeader = ({ title, experience }) => {
+
+        const HeaderWrapper = ( { children } ) => {
+            return (
+                <div className="border-b">
+                    {children}
+                </div>
+            )
+        }
+
+        const Title = ( { title } ) => {
+            return (
+                <h1 class="flex-none text-2xl font-sans font-bold">{title}</h1>
+            )
+        }
+
+        if (experience !== undefined) {
+            const dateStr = experience.date;
+            const subtitle = experience.subtitle;
+            
+            return (
+                <HeaderWrapper>
+                    <div className="flex flex-col">
+                        <Title title={title} />
+                        <div className="flex justify-between">
+                            <h2 className="italic text-slate-700">{subtitle}</h2>
+                            <div className="flex items-end">
+                                <p className="text-sm font-semibold text-yellow-700">{dateStr}</p>
+                            </div>
+                        </div>
+                    </div>
+                </HeaderWrapper>
+            )
+        }
+
+        return (
+            <HeaderWrapper>
+                <Title title={title} />
+            </HeaderWrapper>
+        )
+    }
+
+    const SummaryBody = ({ body, button }) => {
+        const hasButton = (button!==undefined);
+
+        return (
+            <p class="flex-none font-sans font-light text-lg">{body}</p>
+        )
+    }
+
     return (
-        <article class="transition ease-in duration-75 bg-stone-100 grid grid-cols-3 shadow-slate-600 shadow-md hover:shadow-lg hover:shadow-slate-600 hover:scale-101 border-slate-400 rounded-lg border sm:h-72 h-96 w-full">
+        <article class="transition ease-in duration-75 bg-stone-100 grid grid-cols-3 shadow-slate-600 shadow-md hover:shadow-lg hover:shadow-slate-600 hover:scale-101 border-slate-400 rounded-lg border md:h-72 sm:h-80 h-[25rem] w-full">
             {hasImg &&
                 <div class="rounded-lg bg-cover bg-no-repeat bg-center" style={{backgroundImage: `url(${img})`}}/>
             }
-            <SummaryWrapper>
-                <h1 class="flex-none text-xl font-sans font-bold border-b">{title}</h1>
-                <p class="flex-none font-sans font-light text-md">{body}</p>
+            <SummaryWrapper hasImg={hasImg}>
+                <SummaryHeader title={title} experience={experience} />
+                <SummaryBody body={body} />
             </SummaryWrapper>
         </article>
     )
@@ -49,4 +88,3 @@ function Summary({ data }) {
 //TODO: Add a separate button component, follows structure of button data json
 
 export default Summary;
-export { SummaryType }

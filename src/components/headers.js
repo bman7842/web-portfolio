@@ -9,7 +9,7 @@ const NavButton = (props) => {
 
     return (
         <Link to={linkTo}>
-            <div class={"font-mono font-semibold italic py-1 px-2 border-cyan-800 " + (selected===label ? "border-b-4 text-cyan-700" 
+            <div class={"font-mono font-semibold py-1 px-2 border-cyan-800 " + (selected===label ? "border-b-4 text-cyan-700" 
             : "group-hover:text-cyan-700 group-hover:border-dotted group-hover:border-b-4 hover:border-dotted hover:border-b-4 text-gray-500 hover:text-cyan-700 transition duration-300")}>
                 {props.children}
             </div>

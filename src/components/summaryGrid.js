@@ -14,11 +14,11 @@ const maxRowLen = 3;
  */
 function SummaryGridRow({ data }) {
     return (
-        <div class="w-full lg:flex lg:space-x-4 lg:mt-4 px-4">
+        <div class="w-full xl:flex xl:space-x-4 xl:mt-4 px-4">
             {data.map((summary, key) => {
                 if (key<maxRowLen) {
                     return(
-                        <div class={ ((data.length===1) ? "lg:w-2/3 w-full" : "lg:flex-1")+" lg:mt-0 mt-8 md:w-3/4 mx-auto"} >
+                        <div class={ ((data.length===1) ? "xl:w-2/3 w-full" : "xl:flex-1")+" xl:mt-0 mt-8 md:max-w-screen-md xl:max-w-screen-xl mx-auto"} >
                             <Summary data={summary}/>
                         </div>
                     );
