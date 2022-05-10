@@ -50,7 +50,7 @@ function Summary({ data }) {
                         <div className="flex justify-between">
                             <h2 className="italic text-slate-700">{subtitle}</h2>
                             <div className="flex items-end">
-                                <p className="text-sm font-semibold text-yellow-700">{dateStr}</p>
+                                <p className="text-sm font-semibold opacity-40 text-yellow-700">{dateStr}</p>
                             </div>
                         </div>
                     </div>

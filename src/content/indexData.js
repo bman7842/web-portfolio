@@ -8,14 +8,18 @@ export const Summaries = [
         {
             title: "Hi, I'm Brandon...",
             img: ProfileIMG,
-            body: "",
+            body: "I'm a passionate full stack web developer looking to constantly grow my expertise in machine learning, data analytics, and whatever new web technology pops up tomorrow!",
+            button: {
+                label: "portfolio",
+                link: "/portfolio"
+            }
         }
     ],
     [
         {
             title: "University of Iowa",
             img: UIowaIMG,
-            body: "TODO",
+            body: "Pursuing a bachelors degree. Excellent academic standing - 3.95 GPA. Consistently on deans and presidents list. Involved with various orgs. and a certified tutor for the department of computer science.",
             experience: {
                 date: "8/2019 - current",
                 subtitle: "Computer Science and Engineering",
