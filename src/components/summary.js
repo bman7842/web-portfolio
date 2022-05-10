@@ -35,7 +35,7 @@ function Summary({ data }) {
 
         const Title = ( { title } ) => {
             return (
-                <h1 class="flex-none text-2xl font-sans font-bold">{title}</h1>
+                <h1 class="flex-none sm:text-2xl text-xl font-sans font-bold">{title}</h1>
             )
         }
 
@@ -48,9 +48,9 @@ function Summary({ data }) {
                     <div className="flex flex-col">
                         <Title title={title} />
                         <div className="flex justify-between">
-                            <h2 className="italic text-slate-700">{subtitle}</h2>
+                            <h2 className="md:text-base text-sm italic text-slate-700">{subtitle}</h2>
                             <div className="flex items-end">
-                                <p className="text-sm font-semibold opacity-40 text-yellow-700">{dateStr}</p>
+                                <p className="md:text-sm text-xs font-semibold opacity-40 text-yellow-700">{dateStr}</p>
                             </div>
                         </div>
                     </div>
@@ -70,7 +70,7 @@ function Summary({ data }) {
 
         return (
             <div className="grow grid">
-                <p class="flex-none font-sans font-light text-lg">{body}</p>
+                <p class="flex-none font-sans font-light md:text-lg sm:text-base text-sm">{body}</p>
                 {hasButton &&
                     <div class="m-auto place-items-center">
                         <SummaryButton data={button}/>
@@ -81,7 +81,7 @@ function Summary({ data }) {
     }
 
     return (
-        <article class="transition ease-in duration-75 bg-stone-100 grid grid-cols-3 shadow-slate-600 shadow-md hover:shadow-lg hover:shadow-slate-600 hover:scale-101 border-slate-400 rounded-lg border md:h-72 sm:h-80 h-[25rem] w-full">
+        <article class="transition ease-in duration-75 bg-stone-100 grid grid-cols-3 shadow-slate-600 shadow-md hover:shadow-lg hover:shadow-slate-600 hover:scale-101 border-slate-400 rounded-lg border md:h-72 sm:h-80 h-[22rem] w-full">
             {hasImg &&
                 <div class="rounded-lg bg-cover bg-no-repeat bg-center" style={{backgroundImage: `url(${img})`}}/>
             }
