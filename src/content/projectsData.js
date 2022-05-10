@@ -6,7 +6,7 @@ export const projectInfo = [
         {
             title: "Doogle",
             img: DoogleSC,
-            body: "A search engine designed to only show results relating to dogs - and a random activity (since you're probably bored if you're looking up dog photos). Built with a React frontend and KoaJS backend. This was a project for an internship at PeachPay!",
+            body: "A search engine designed to only show results relating to dogs - and a random activity (since you're probably bored if you're looking up dog photos). Built with a React frontend and KoaJS backend. This was a project for an internship at PeachPay! Hosting with AWS",
             type: "default",
             button: {
                 label: "try out",
