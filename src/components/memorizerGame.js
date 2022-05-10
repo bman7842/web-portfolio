@@ -6,9 +6,9 @@ const MemorizerGuide = () => {
     const body = "The goal of memorizer is memorize the patterns displayed on the screen.";
 
     return(
-        <div className="max-w-sm mx-auto">
+        <div className="w-full mx-auto">
             
-            <Notepad lined={true} header={header} body={body} />
+            <Notepad lined={false} header={header} body={body} collapsible={true} />
 
         </div>
     )
@@ -24,7 +24,7 @@ const MemorizerGame = () => {
 
 const MemorizerInfo = () => {
     return (
-        <div className="px-4 flex-col space-y-2 justify-items-center">
+        <div className="w-4/12 px-4 flex-col space-y-2 justify-items-center">
             <div className="text-center flex-col justify-items-center">
                 <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
                     Memorizer

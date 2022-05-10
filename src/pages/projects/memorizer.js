@@ -8,7 +8,7 @@ const MemorizerPage = () => {
     return (
       <main class="w-full">
         <MainHeader selected="projects" subcat="memorizer"/>
-        <div className="max-w-4xl mx-auto p-4">
+        <div className="max-w-7xl mx-auto p-4">
           <Memorizer />
         </div>
         <MainFooter/>
