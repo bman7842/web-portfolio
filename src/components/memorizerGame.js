@@ -5,7 +5,7 @@ const MemorizerGuide = () => {
     const header = "Guide";
     const GuideBody = () => {
         return (
-            <div className="text-sm text-gray-600">
+            <div className="text-sm text-gray-600 mx-auto">
                 <p>
                     The goal of memorizer is to remember the pattern played to you and repeat it.
                 </p>
@@ -27,11 +27,27 @@ const MemorizerGuide = () => {
     )
 }
 
+
 const MemorizerGame = () => {
 
+    function StartGame() {
+
+    }
+
+    const GameButton = ( { action } ) => {
+        return (
+            <button className="transition ease-in-out hover:scale-105 hover:shadow-sm w-min mx-auto px-8 py-2 border-4 rounded-md border-sky-300/50 bg-sky-300/50">
+                <span className="text-lg font-bold text-gray-600">START</span>
+            </button>
+        )
+    }
+
     return (
-        <div className="transition ease-in-out hover:scale-x-[1.02] hover:scale-y-[1.07] flex-grow mx-2 bg-slate-400/25 rounded-lg p-2 grid place-items-center shadow-lg border-2 hover:border-4 border-gray-800/80">
-            <h1>test</h1>
+        <div className="flex-grow mx-2 p-2 grid place-items-center">
+            <div className="flex flex-col space-y-2">
+                <p className="text-sm text-black/60 italic">Your journey begins here...</p>
+                <GameButton />
+            </div>
         </div>
     )
 }
