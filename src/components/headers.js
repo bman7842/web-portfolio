@@ -82,7 +82,9 @@ const MainHeader = (props) => {
         <header class="w-full">
             <SiteMeta rel={selected}></SiteMeta>
             <div class="w-full grid place-items-center">
-                <StaticImage href="index.html" class="w-full max-w-xs" src="../images/logo.png" />
+
+                <StaticImage href="index.html" class="w-full max-w-sm lg:max-w-md" src="../images/logo.png" />
+
             </div>
 
             <NavBar selected={selected} subcat={subcat}></NavBar>
