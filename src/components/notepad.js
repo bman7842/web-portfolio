@@ -8,7 +8,7 @@ const linedBackgroundStyle = {
  * A simple notepad design, can be lined or unlined and collapsible or uncollapsible.
  * @param {*} props 
  */
-const Notepad = ({ collapsible, lined, header, body, startCollapsed }) => {
+const Notepad = ({ collapsible, lined, header, startCollapsed, children }) => {
     const [collapsed, setCollapsed] = useState(startCollapsed === undefined ? false : startCollapsed);
 
     if (collapsible === undefined) {
@@ -45,17 +45,8 @@ const Notepad = ({ collapsible, lined, header, body, startCollapsed }) => {
                     <CollapsibleArrow />
                 }
             </div>
-            {/*{!collapsed &&
-                <div style={ lined ? linedBackgroundStyle : {} } className="">
-                    <p>
-                        {body}
-                    </p>
-                </div>
-            }*/}
             <div style={ lined ? linedBackgroundStyle : {} } className={collapsed ? "hidden" : ""}>
-                <p>
-                    {body}
-                </p>
+                {children}
             </div>
         </div>
     )
