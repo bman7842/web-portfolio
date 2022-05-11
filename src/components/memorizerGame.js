@@ -1,10 +1,34 @@
 import React, { useState }from "react"
 import styled from "styled-components"
 import Notepad from "./notepad"
+import "../styles/animations.css"
 
 const TextOutline = styled.h1`
     text-shadow: 1px 1px 2px black;
 `
+const PulseAnimation = styled.div`
+    animation-duration: 3s;
+    animation-name: slidein;
+  
+    @keyframes slidein {
+    from {
+      margin-left: 100%;
+      width: 300%;
+    }
+  
+    75% {
+      font-size: 300%;
+      margin-left: 25%;
+      width: 150%;
+    }
+  
+    to {
+      margin-left: 0%;
+      width: 100%;
+    }
+  }
+`
+
 const Scenes = {
     START: 0,
     DIFFICULTY: 1,
@@ -121,8 +145,8 @@ const MemorizerGame = () => {
             return (
                 <div className="relative w-0 grid place-items-center">            
                     <button onMouseLeave={onMouseLeave} onMouseEnter={onMouseEnter} onClick={onClick} className="absolute w-5 h-5 rounded-full bg-gray-800 grid place-items-center">
-                        <div className="group w-4 h-4 rounded-full bg-gray-200 grid place-items-center">
-                            <div className={(active===object || hovered===object ? "w-3 h-3 rounded-full bg-gray-800" : "") + " group-hover:scale-125 transition"} />
+                        <div className="group w-4 h-4 rounded-full bg-gray-200 grid place-items-center animationgroup">
+                            <div className={(active===object || hovered===object ? "w-3 h-3 rounded-full bg-gray-800" : "") + " pulse"} />
                         </div>
                     </button>
                 </div>

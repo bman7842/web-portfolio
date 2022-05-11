@@ -1,0 +1,21 @@
+.animationgroup:hover .pulse {
+        animation-duration: 1.5s;
+        animation-iteration-count: infinite;
+        animation-name: pulse;
+  }
+  
+  @keyframes pulse {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    40% {
+        transform: scale(1.4);
+    }
+
+    60% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+  }
