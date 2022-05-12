@@ -147,10 +147,8 @@ const MemorizerGame = () => {
 
             return (
                 <div className="relative w-0 grid place-items-center">            
-                    <button onMouseLeave={onMouseLeave} onMouseEnter={onMouseEnter} onClick={onClick} className="p-0.5 absolute w-6 h-6 rounded-full bg-gray-500 grid place-items-center">
-                        <div className="group w-full h-full rounded-full p-0.5 bg-gray-200 grid place-items-center animationgroup">
-                            <div className={(active===object ? "pulse w-full h-full " : "") + " transition-opacity ease-in rounded-full bg-gray-800 group-hover:w-full group-hover:h-full group-hover:opacity-0.5"} />
-                        </div>
+                    <button onMouseLeave={onMouseLeave} onMouseEnter={onMouseEnter} onClick={onClick} className="p-0.5 absolute w-6 h-6 rounded-full bg-gray-300 shadow-xl border-black/60 grid place-items-center">
+                        <div className={(active===object ? "pulse w-full h-full border " : "hover:border ") + " transition-opacity ease-in rounded-full bg-sky-300 hover:w-full border-black hover:h-full hover:opacity-0.5"} />
                     </button>
                 </div>
             )
@@ -158,7 +156,7 @@ const MemorizerGame = () => {
         }
 
         return (
-            <div className="rounded-xl transition-all ease-in-out duration-75 hover:rounded-full border-2 border-black/50 hover:h-7 hover:px-3 h-3 bg-sky-600/50 p-0.5">
+            <div className="rounded-xl transition-all ease-in-out duration-75 hover:rounded-full hover:h-7 hover:px-3 px-6 h-3 border-black border shadow-xl bg-slate-200/40 p-0.5">
                 <div className="flex h-full space-x-16">
                     {options.map((option, i) =>
                         <SliderButton object={option} />
