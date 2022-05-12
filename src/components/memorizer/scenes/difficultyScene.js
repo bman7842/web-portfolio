@@ -48,7 +48,7 @@ const DifficultyScene = ( { setDifficulty } ) => {
     })
 
     return (
-        <div className="h-full">
+        <div className="h-full grid place-items-center">
             <div className={(animate ? "bouncedown " : "bouncedowninitial ") + "h-48 w-96 my-auto mx-auto flex flex-col space-y-4 text-center p-8 border border-gray-600 shadow-xl rounded-xl"}>
                 <div>
                     <h2 className="italic text-gray-400">Difficulty:</h2>

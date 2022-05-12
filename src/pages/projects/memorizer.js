@@ -10,7 +10,7 @@ const MemorizerPage = () => {
       <main class="w-full h-screen flex flex-col">
         <MainHeader selected="projects" subcat="memorizer"/>
         <div className="max-w-7xl w-full mx-auto p-4 flex-grow">
-          <div class="h-full w-full py-2 flex divide-solid divide-x bg-stone-100 shadow-slate-600 shadow-md border-slate-400 rounded-lg border">
+          <div class="h-full w-full flex bg-stone-100 shadow-slate-600 shadow-md border-slate-400 rounded-lg border">
               <MemorizerGame />
               <MemorizerInfo />
           </div>

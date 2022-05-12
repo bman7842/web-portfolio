@@ -29,7 +29,7 @@ const MemorizerGuide = () => {
 
 const MemorizerInfo = () => {
     return (
-        <div className="w-4/12 px-4 flex-col space-y-2 justify-items-center">
+        <div className="w-4/12 border-l border-gray-200 my-4 px-4 flex-col space-y-2 justify-items-center">
             <div className="text-center flex-col justify-items-center border-b pb-2 mx-auto w-min">
                 <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-sky-900 via-slate-500 to-gray-200">
                     Memorizer
