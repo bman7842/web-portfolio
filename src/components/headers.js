@@ -46,10 +46,22 @@ const DropDownNavSubButton = (props) => {
     const label = props.label;
     const subcat = props.subcat;
     const linkTo = props.to;
+    const isRelLink = linkTo.charAt(0) === "/";
+
+    const LinkRouter = ( { children } ) => {
+        if (isRelLink) {
+            return (
+                <Link to={linkTo}>{children}</Link>
+            )
+        }
+        return (
+            <a href={linkTo}>{children}</a>
+        )
+    }
 
     return (
         <div class="w-full rounded transition duration-300 hover:bg-gray-400 text-center last:border-b-0 border-slate-400">
-            <Link to={linkTo}><div class={"hover:text-white "+(subcat===label ? "text-cyan-800" : "")}>{props.children}</div></Link>
+            <LinkRouter><div class={"hover:text-white "+(subcat===label ? "text-cyan-800" : "")}>{props.children}</div></LinkRouter>
         </div>
     )
 }
@@ -63,7 +75,7 @@ const NavBar = (props) => {
             <nav class="flex items-center space-x-2">
                 <NavButton to="/" label="home" selected={selected}>Home</NavButton>
                 <DropDownNavButton to="/projects/" label="projects" selected={selected} text="Projects">
-                    <DropDownNavSubButton to="" label="doogle" selected={selected} subcat={subcat}>doogle</DropDownNavSubButton>
+                    <DropDownNavSubButton to="http://doogle-env.eba-ugdmui76.us-east-2.elasticbeanstalk.com/?fbclid=IwAR3i-uJEDm83RSc1RC_30G6tobT-RSIVlVBh7Ta4lQXopzNVcP1h33k-ywE" label="doogle" selected={selected} subcat={subcat}>doogle</DropDownNavSubButton>
                     <DropDownNavSubButton to="/projects/memorizer/" label="memorizer" selected={selected} subcat={subcat}>memorizer</DropDownNavSubButton>
                 </DropDownNavButton>
                 <NavButton to="/portfolio/" label="portfolio" selected={selected}>Portfolio</NavButton>
