@@ -1,0 +1,33 @@
+.fadeout {
+    animation-duration: 1s;
+    animation-name: fadeout;
+}
+
+.initialboundedown {
+    transform: translate(0, -50rem);
+}
+
+.bouncedown {
+    animation-duration: 1;
+    animation-name: bouncedown;
+}
+
+@keyframes bouncedown {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        transform: scale(0);
+    }
+}
+
+@keyframes fadeout {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
