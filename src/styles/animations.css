@@ -1,4 +1,4 @@
-.animationgroup:hover .pulse {
+.pulse {
         animation-duration: 1.5s;
         animation-iteration-count: infinite;
         animation-name: pulse;
@@ -15,7 +15,7 @@
     }
 
     60% {
-        opacity: 0;
+        opacity: 0.75;
         transform: scale(0.5);
     }
   }

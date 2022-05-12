@@ -124,11 +124,14 @@ const MemorizerGame = () => {
         const SliderButton = ( { object } ) => {
 
             function onMouseEnter(e) {
-                displayUpdater(object);
-                setHovered(object);
+                if (active !== object) {
+                    displayUpdater(object);
+                    setHovered(object);
+                }
             }
 
             function onMouseLeave(e) {
+                
                 displayUpdater(active);
                 setHovered(undefined);
             }
@@ -144,9 +147,9 @@ const MemorizerGame = () => {
 
             return (
                 <div className="relative w-0 grid place-items-center">            
-                    <button onMouseLeave={onMouseLeave} onMouseEnter={onMouseEnter} onClick={onClick} className="absolute w-5 h-5 rounded-full bg-gray-800 grid place-items-center">
-                        <div className="group w-4 h-4 rounded-full bg-gray-200 grid place-items-center animationgroup">
-                            <div className={(active===object || hovered===object ? "w-3 h-3 rounded-full bg-gray-800" : "") + " pulse"} />
+                    <button onMouseLeave={onMouseLeave} onMouseEnter={onMouseEnter} onClick={onClick} className="p-0.5 absolute w-6 h-6 rounded-full bg-gray-500 grid place-items-center">
+                        <div className="group w-full h-full rounded-full p-0.5 bg-gray-200 grid place-items-center animationgroup">
+                            <div className={(active===object ? "pulse w-full h-full " : "") + " transition-opacity ease-in rounded-full bg-gray-800 group-hover:w-full group-hover:h-full group-hover:opacity-0.5"} />
                         </div>
                     </button>
                 </div>
@@ -155,8 +158,8 @@ const MemorizerGame = () => {
         }
 
         return (
-            <div className="rounded-xl bg-black p-0.5">
-                <div className="flex h-3 space-x-16 bg-gray-400">
+            <div className="rounded-xl transition-all ease-in-out duration-75 hover:rounded-full border-2 border-black/50 hover:h-7 hover:px-3 h-3 bg-sky-600/50 p-0.5">
+                <div className="flex h-full space-x-16">
                     {options.map((option, i) =>
                         <SliderButton object={option} />
                     )}
@@ -185,9 +188,7 @@ const MemorizerGame = () => {
                         </h1>
                     </div>
                     <Slider options={[Difficulty.EASY, Difficulty.NORMAL, Difficulty.HARD, Difficulty.INSANE]} initial={Difficulty.NORMAL} displayUpdater={setHovered}/>
-                    <button className="font-normal hover:font-bold bg-green-200 border border-gray-800 rounded-xl py-2">
-                        BEGIN
-                    </button>
+
                 </div>
             </div>
         )
