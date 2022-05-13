@@ -27,7 +27,7 @@ const Notepad = ({ collapsible, lined, header, startCollapsed, children }) => {
         const arrow = collapsed ? "▼" : "▲";
 
         return (
-            <button onClick={handleCollapse} className="absolute right-0 top-0 left-0 bottom-0 opacity-50 transition ease-in hover:opacity-100">
+            <button onClick={handleCollapse} className="absolute right-0 top-0 left-0 bottom-0 w-full opacity-50 transition ease-in hover:opacity-100">
                 <span className="absolute right-2 top-0">{arrow}</span>
             </button>
         )
