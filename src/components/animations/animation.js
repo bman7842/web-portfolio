@@ -13,9 +13,9 @@ class Animation {
  * @returns 
  */
 const AnimationDiv = ( { animation, children, callback } ) => {
+
     function waitAnimation() {
         setTimeout(() => {
-
             if (callback !== undefined) {
                 callback();
             }
@@ -24,7 +24,15 @@ const AnimationDiv = ( { animation, children, callback } ) => {
 
     useEffect( () => {
         waitAnimation();
-    })
+    }, [animation])
+
+    if (animation === undefined) {
+        return (
+            <div>
+                {children}
+            </div>
+        )
+    }
 
     return (
         <animation.style>
@@ -33,10 +41,10 @@ const AnimationDiv = ( { animation, children, callback } ) => {
     )
 }
 
-const OpenCloseAnimation = ( { OpenAnimation, CloseAnimation, closing, callback, children } ) => {
+const OpenCloseAnimation = ( { OpenAnimation, CloseAnimation, closing, openCallback, closeCallback, children } ) => {
 
     return (
-        <AnimationDiv animation={closing ? CloseAnimation : OpenAnimation} children={children} callback={closing ? callback : undefined}>
+        <AnimationDiv animation={closing ? CloseAnimation : OpenAnimation} children={children} callback={closing ? closeCallback : openCallback}>
             {children}
         </AnimationDiv>
     )
