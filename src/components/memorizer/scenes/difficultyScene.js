@@ -67,7 +67,7 @@ const DifficultyScene = ( { startGame } ) => {
                         </h1>
                     </section>
                     <section className="w-60 mx-auto h-8 grid place-items-center">
-                        <Slider options={[Difficulty.EASY, Difficulty.NORMAL, Difficulty.HARD, Difficulty.INSANE]} initial={Difficulty.NORMAL} displayUpdater={setHovered} selectUpdater={(difficulty)=>{setSelected(difficulty)}}/>
+                        <Slider options={[Difficulty.EASY, Difficulty.NORMAL, Difficulty.HARD, Difficulty.INSANE]} initial={selected} displayUpdater={setHovered} selectUpdater={(difficulty)=>{setSelected(difficulty)}}/>
                     </section>
                     <section className="mx-auto">
                         <GameButton text="PLAY" onClick={closeScene} />
