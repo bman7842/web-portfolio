@@ -15,25 +15,6 @@
     width: 100%;
     height: 100%;
 }
-
-/*.slideroption:hover .slideroptioninset {
-    animation-duration: .25s;
-    animation-name: expand;
-    width: 100%;
-    height: 100%;
-}
-
-@keyframes expand {
-    from {
-        width: 0%;
-        height: 0%;
-    }
-
-    to {
-        width: 100%;
-        height: 100%;
-    }
-}*/
   
 @keyframes pulse {
 0% {
