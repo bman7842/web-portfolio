@@ -7,7 +7,7 @@ import React from "react"
 const GameScene = ( { difficulty } ) => {
     return (
         <div>
-
+            {difficulty.text}
         </div>
     )
 }

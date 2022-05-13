@@ -3,7 +3,7 @@ import DifficultyScene from "./scenes/difficultyScene"
 import GameScene from "./scenes/gameScene"
 import { FadeIn, FadeOut } from "../animations/fadeAnim"
 import { OpenCloseAnimation } from "../animations/animation"
-import "../../styles/memorizer/sceneAnimations.css"
+import GameButton from "./buttons"
 
 const Scenes = {
     START: 0,
@@ -26,9 +26,7 @@ const StartScene = ( { setScene } ) => {
             <OpenCloseAnimation OpenAnimation={FadeIn} CloseAnimation={FadeOut} closing={closing} closeCallback={()=>{setScene(Scenes.DIFFICULTY)}}>
                 <div className={"flex flex-col space-y-2"}>
                     <p className="text-sm text-black/60 italic">Your journey begins here...</p>
-                    <button onClick={StartGame} className="transition ease-in-out hover:scale-105 hover:shadow-sm w-min mx-auto px-8 py-2 border-4 rounded-md border-sky-300/50 bg-sky-300/50">
-                        <span className="text-lg font-bold text-gray-600">START</span>
-                    </button>
+                    <GameButton onClick={StartGame} text="BEGIN"/>
                 </div>
             </OpenCloseAnimation>
         </div>
@@ -37,7 +35,12 @@ const StartScene = ( { setScene } ) => {
 
 const MemorizerGame = () => {
     const [scene, setScene] = useState(Scenes.START);
-    const [difficulty, setDifficulty] = useState(undefined)
+    const [difficulty, setDifficulty] = useState(undefined);
+
+    function startGame(difficulty) {
+        setDifficulty(difficulty);
+        setScene(Scenes.GAME);
+    }
 
     return (
         <div className="flex-grow mx-2 p-2 overflow-hidden">
@@ -45,7 +48,7 @@ const MemorizerGame = () => {
                 <StartScene setScene={setScene} />
             }
             {scene===Scenes.DIFFICULTY &&
-                <DifficultyScene setDifficulty={setDifficulty} />
+                <DifficultyScene startGame={startGame} />
             }
             {scene===Scenes.GAME &&
                 <GameScene difficulty={difficulty} />

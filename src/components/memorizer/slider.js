@@ -51,6 +51,7 @@ const Slider = ( { options, initial, displayUpdater, selectUpdater } ) => {
         updateDisplayed(object);
         if (object !== undefined && object !== active) {
             setActive(object);
+            selectUpdater(object);
         }
     }
 
