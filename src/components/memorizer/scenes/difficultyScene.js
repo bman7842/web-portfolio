@@ -12,24 +12,32 @@ const TextOutline = styled.h1`
 const Difficulty = {
     EASY: {
         text: "EASY",
+        tileCount: 9,
+        columns: 3,
         style: {
             color: "green"
-        }
+        },
     },
     NORMAL: {
         text: "NORMAL",
+        tileCount: 16,
+        columns: 4,
         style: {
             color: "yellow",
         }
     },
     HARD: {
         text: "HARD",
+        tileCount: 25,
+        columns: 5,
         style: {
             color: "orange"
         }
     },
     INSANE: {
         text: "INSANE",
+        tileCount: 36,
+        columns: 6,
         style: {
             color: "red"
         }

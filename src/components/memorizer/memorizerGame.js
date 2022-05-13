@@ -43,7 +43,7 @@ const MemorizerGame = () => {
     }
 
     return (
-        <div className="flex-grow mx-2 p-2 overflow-hidden">
+        <div className="flex-grow overflow-hidden">
             {scene===Scenes.START &&
                 <StartScene setScene={setScene} />
             }

@@ -20,7 +20,7 @@ const BounceDown = new Animation(bounceDownDur, styled.div`
     }
 `)
 
-const bounceUpDur = 2;
+const bounceUpDur = 1;
 const BounceUp = new Animation(bounceUpDur, styled.div`
     animation-duration: ${bounceUpDur}s;
     animation-name: bounceup;
