@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import Animation, { AnimationDiv } from "../../animations/animation"
 import styled from "styled-components"
 
@@ -21,18 +21,66 @@ const ExpandWobble = new Animation(ExpandWobbleDur, styled.div`
     }
 `)
 
+const PartialWobbleDur = 1;
+const PartialWobble = new Animation(PartialWobbleDur, styled.div`
+    animation-duration: ${PartialWobbleDur}s;
+    animation-name: partialwobble;
+    transform: scale(1);
+
+    @keyframes partialwobble {
+        0% {
+            transform: scale(1.0);
+        }
+        50% {
+            transform: scale(0.5);
+        }
+        75% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+`)
+
 const colorList = ["red", "green", "blue", "yellow"];
 
-const GameTile = ( { id } ) => {
-    const style = {
-        backgroundColor: colorList[id],
+const TileDivHoverClick = styled.div`
+    transition-property: transform;
+    transition-duration: 0.2s;
+
+    &:hover {
+        transform: scale(1.2);
+    }
+`
+
+const GameTile = ( { id, playingTile, playingTileComplete } ) => {
+    const [introAnimComplete, setIntroAnimComplete] = useState(false);
+
+    const color = {
+        backgroundColor: colorList[id]
+    }
+    
+    if (playingTile === id) {
+        return (
+            <AnimationDiv animation={PartialWobble} callback={() => {playingTileComplete(id)}}>
+                <div style={color} className="w-16 h-16 rounded border border-black" />
+            </AnimationDiv>
+        )
+    }
+
+    if (!introAnimComplete) {
+        return (
+            <AnimationDiv callback={()=>{setIntroAnimComplete(true)}} animation={ExpandWobble}>
+                <TileDivHoverClick style={color} className="w-16 h-16 rounded border border-black" />
+            </AnimationDiv>
+        )
     }
 
     return (
-        <AnimationDiv animation={ExpandWobble}>
-            <div style={style} className="w-16 h-16 rounded border border-black">
-            </div>
-        </AnimationDiv>
+        <div>
+            <TileDivHoverClick style={color} className="w-16 h-16 rounded border border-black" />
+        </div>
     )
 }
 
@@ -44,17 +92,82 @@ const SplitRow = ( {children} ) => {
     )
 }
 
+function comparePatten(pattern1, pattern2) {
+    return (
+        pattern1.length === pattern2.length &&
+        pattern1.every(function (element, index) {
+            return element === pattern2[index];
+        })
+    );
+}
+
 /**
  * Main memorizer game scene
  * @param {*} param0 
  */
 const GameScene = ( { difficulty } ) => {
-    const [animating, setAnimating] = useState(true);
+    const [playingSequence, setPlayingSequence] = useState({active: false, index: 0});
+    const [startCountdown, setStartCountdown] = useState(5);
+    const [curTilePlaying, setCurTilePlaying] = useState(undefined);
+    const [statusText, setStatusText] = useState("");
     const [score, setScore] = useState(0);
+    const [gamePattern, setGamePattern] = useState([]);
+    const [playerGuess, setPlayerGuess] = useState([]);
 
     const columns = {
         display: "grid",
         gridTemplateColumns: `repeat(${difficulty.columns}, minmax(0, 1fr))`,
+    }
+
+    useEffect(() => {
+        if (!playingSequence.active && (gamePattern.length===0)) {
+            countdownFunc();
+        } else {
+            startPlayingSequence()
+        }
+    }, [startCountdown, gamePattern]);
+
+    function countdownFunc() {
+        setStatusText(`Game starting in ${startCountdown}`)
+        if (startCountdown === 0) {
+            setTimeout(() => {addNew()}, 1000);
+        }
+
+        setTimeout(() => {setStartCountdown(startCountdown-1)}, 1000);
+    }
+
+    function startPlayingSequence() {
+        if (playingSequence.active) {
+            return;
+        }
+
+        setPlayingSequence({
+            active: true,
+            index: 0,
+        });
+
+        setStatusText("Playing Pattern...");
+        console.log(gamePattern[playingSequence.index]);
+        setTimeout(() => {setCurTilePlaying(gamePattern[playingSequence.index])}, 1000);
+    }
+
+    function stopPlayingSequence() {
+        setStatusText("Repeat the Pattern:");
+        setPlayingSequence({
+            active: false,
+            index: 0,
+        });
+        setCurTilePlaying(undefined);
+    }
+
+    function addNew() {
+        setGamePattern(gamePattern.concat([Math.floor(Math.random() * (difficulty.tileCount))]));
+    }
+
+    function animationComplete() {
+        if (playingSequence.index === gamePattern.length-1) {
+            stopPlayingSequence();
+        }
     }
 
     return (
@@ -70,10 +183,13 @@ const GameScene = ( { difficulty } ) => {
                 </SplitRow>
             </section>
             <section className="flex-grow grid w-full place-items-center p-4">
-                <div style={columns} className="gap-4">
-                    {[...new Array(difficulty.tileCount)].map((x, i) => 
-                        <GameTile id={i} />
-                    )}
+                <div>
+                    <h1 className="text-center mb-8 italic font-semibold">{statusText}</h1>
+                    <div style={columns} className="gap-4">
+                        {[...new Array(difficulty.tileCount)].map((x, i) => 
+                            <GameTile key={i} playingTile={curTilePlaying} animation={ExpandWobble} id={i} playingTileComplete={animationComplete} />
+                        )}
+                    </div>
                 </div>
             </section>
         </div>
