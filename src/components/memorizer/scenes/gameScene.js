@@ -45,26 +45,35 @@ const PartialWobble = new Animation(PartialWobbleDur, styled.div`
 
 const colorList = ["red", "green", "blue", "yellow"];
 
-const TileDivHoverClick = styled.div`
+const TileDivHoverClick = styled.button`
     transition-property: transform;
-    transition-duration: 0.2s;
+    transition-duration: 0.1s;
 
     &:hover {
-        transform: scale(1.2);
+        transform: scale(1.1);
+    }
+
+    &:active:hover {
+        transform: scale(0.8);
     }
 `
 
-const GameTile = ( { id, playingTile, playingTileComplete } ) => {
+const GameTile = ( { id, playingTile, playingTileComplete, onClick } ) => {
     const [introAnimComplete, setIntroAnimComplete] = useState(false);
 
     const color = {
         backgroundColor: colorList[id]
     }
+
+    function onButtonClick(e) {
+        e.preventDefault();
+        onClick(id);
+    }
     
     if (playingTile === id) {
         return (
             <AnimationDiv animation={PartialWobble} callback={() => {playingTileComplete(id)}}>
-                <div style={color} className="w-16 h-16 rounded border border-black" />
+                <button style={color} className="w-16 h-16 rounded border border-black" />
             </AnimationDiv>
         )
     }
@@ -79,7 +88,7 @@ const GameTile = ( { id, playingTile, playingTileComplete } ) => {
 
     return (
         <div>
-            <TileDivHoverClick style={color} className="w-16 h-16 rounded border border-black" />
+            <TileDivHoverClick onClick={onButtonClick} style={color} className="w-16 h-16 rounded border border-black" />
         </div>
     )
 }
@@ -105,11 +114,11 @@ function comparePatten(pattern1, pattern2) {
  * Main memorizer game scene
  * @param {*} param0 
  */
-const GameScene = ( { difficulty } ) => {
-    const [playingSequence, setPlayingSequence] = useState({active: false, index: 0});
+const GameScene = ( { difficulty, gameOverCallback } ) => {
     const [startCountdown, setStartCountdown] = useState(5);
     const [curTilePlaying, setCurTilePlaying] = useState(undefined);
     const [statusText, setStatusText] = useState("");
+    const [playingSequence, setPlayingSequence] = useState(false);
     const [score, setScore] = useState(0);
     const [gamePattern, setGamePattern] = useState([]);
     const [playerGuess, setPlayerGuess] = useState([]);
@@ -120,7 +129,7 @@ const GameScene = ( { difficulty } ) => {
     }
 
     useEffect(() => {
-        if (!playingSequence.active && (gamePattern.length===0)) {
+        if (!playingSequence && (gamePattern.length===0)) {
             countdownFunc();
         } else {
             startPlayingSequence()
@@ -131,32 +140,33 @@ const GameScene = ( { difficulty } ) => {
         setStatusText(`Game starting in ${startCountdown}`)
         if (startCountdown === 0) {
             setTimeout(() => {addNew()}, 1000);
+            return;
         }
 
         setTimeout(() => {setStartCountdown(startCountdown-1)}, 1000);
     }
 
     function startPlayingSequence() {
-        if (playingSequence.active) {
+        if (playingSequence) {
             return;
         }
 
-        setPlayingSequence({
-            active: true,
-            index: 0,
-        });
-
+        setPlayingSequence(true);
         setStatusText("Playing Pattern...");
-        console.log(gamePattern[playingSequence.index]);
-        setTimeout(() => {setCurTilePlaying(gamePattern[playingSequence.index])}, 1000);
+
+        gamePattern.forEach(function (id, i) {
+            const delay = (i+0.5)*1000
+
+            if (i>0 && gamePattern[i-1] === id) {
+                setTimeout(() => {setCurTilePlaying(undefined)}, delay-1);
+            }
+            setTimeout(() => {setCurTilePlaying({id: id, index: i})}, delay);
+        });
     }
 
     function stopPlayingSequence() {
         setStatusText("Repeat the Pattern:");
-        setPlayingSequence({
-            active: false,
-            index: 0,
-        });
+        setPlayingSequence(false);
         setCurTilePlaying(undefined);
     }
 
@@ -164,10 +174,33 @@ const GameScene = ( { difficulty } ) => {
         setGamePattern(gamePattern.concat([Math.floor(Math.random() * (difficulty.tileCount))]));
     }
 
-    function animationComplete() {
-        if (playingSequence.index === gamePattern.length-1) {
+    function animationComplete(id) {
+        if (curTilePlaying.index === gamePattern.length-1) {
             stopPlayingSequence();
         }
+    }
+
+    function tileClicked(id) {
+        if (playingSequence === true || !gamePattern || gamePattern.length === 0) {
+            return;
+        }
+
+        const compareIndex = playerGuess.length;
+        if (gamePattern[compareIndex] !== id) {
+            setStatusText("INCORRECT");
+            gameOverCallback(score);
+            return;
+        }
+
+        if (compareIndex+1 === gamePattern.length) {
+            addNew();
+            setPlayerGuess([]);
+            setScore(score+1);
+            return
+        } 
+
+        setStatusText("Correct, sequence progress: " + Math.ceil(((compareIndex+1)/gamePattern.length)*100) +"%")
+        setPlayerGuess(playerGuess.concat([id]));
     }
 
     return (
@@ -187,7 +220,7 @@ const GameScene = ( { difficulty } ) => {
                     <h1 className="text-center mb-8 italic font-semibold">{statusText}</h1>
                     <div style={columns} className="gap-4">
                         {[...new Array(difficulty.tileCount)].map((x, i) => 
-                            <GameTile key={i} playingTile={curTilePlaying} animation={ExpandWobble} id={i} playingTileComplete={animationComplete} />
+                            <GameTile onClick={tileClicked} key={i} playingTile={curTilePlaying && curTilePlaying.id} animation={ExpandWobble} id={i} playingTileComplete={animationComplete} />
                         )}
                     </div>
                 </div>
