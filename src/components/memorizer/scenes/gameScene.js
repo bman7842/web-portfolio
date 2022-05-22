@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import Animation, { AnimationDiv } from "../../animations/animation"
 import styled from "styled-components"
 
@@ -21,18 +21,81 @@ const ExpandWobble = new Animation(ExpandWobbleDur, styled.div`
     }
 `)
 
-const colorList = ["red", "green", "blue", "yellow"];
+const PartialWobbleDur = 1;
+const PartialWobble = new Animation(PartialWobbleDur, styled.div`
+    animation-duration: ${PartialWobbleDur}s;
+    animation-name: partialwobble;
+    transform: scale(1);
 
-const GameTile = ( { id } ) => {
-    const style = {
-        backgroundColor: colorList[id],
+    @keyframes partialwobble {
+        0% {
+            transform: scale(1.0);
+        }
+        50% {
+            transform: scale(0.5);
+        }
+        75% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+`)
+
+/**
+ * See if we can automate this?
+ */
+const colorList = ["#ff0000", "#54a832", "#0015ff", "#ffee00", "#924E7D", "#fc3d03", "#00ffb3", "#1E2460", "#332F2C", 
+                   "#193737", "#A98307", "#84C3BE", "#8F8B66", "#8E402A", "#231A24", "#063971", "#E6D690", "#8D948D",
+                   "#84C3BE", "#FF7514", "#5E2129", "#89AC76", "#497E76", "#D36E70", "#26252D", "#8673A1", "#A12312",
+                   "#955F20", "#F4A900", "#6A5F31", "#F75E25", "#57A639", "#7FB5B5", "#B32821", "#CF3476", "#606E8C"];
+
+const TileDivHoverClick = styled.button`
+    transition-property: transform;
+    transition-duration: 0.1s;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+
+    &:active:hover {
+        transform: scale(0.8);
+    }
+`
+
+const GameTile = ( { id, playingTile, playingTileComplete, onClick } ) => {
+    const [introAnimComplete, setIntroAnimComplete] = useState(false);
+
+    const color = {
+        backgroundColor: colorList[id]
+    }
+
+    function onButtonClick(e) {
+        e.preventDefault();
+        onClick(id);
+    }
+    
+    if (playingTile === id) {
+        return (
+            <AnimationDiv animation={PartialWobble} callback={() => {playingTileComplete(id)}}>
+                <button style={color} className="w-16 h-16 rounded border border-black" />
+            </AnimationDiv>
+        )
+    }
+
+    if (!introAnimComplete) {
+        return (
+            <AnimationDiv callback={()=>{setIntroAnimComplete(true)}} animation={ExpandWobble}>
+                <TileDivHoverClick style={color} className="w-16 h-16 rounded border border-black" />
+            </AnimationDiv>
+        )
     }
 
     return (
-        <AnimationDiv animation={ExpandWobble}>
-            <div style={style} className="w-16 h-16 rounded border border-black">
-            </div>
-        </AnimationDiv>
+        <div>
+            <TileDivHoverClick onClick={onButtonClick} style={color} className="w-16 h-16 rounded border border-black" />
+        </div>
     )
 }
 
@@ -48,13 +111,93 @@ const SplitRow = ( {children} ) => {
  * Main memorizer game scene
  * @param {*} param0 
  */
-const GameScene = ( { difficulty } ) => {
-    const [animating, setAnimating] = useState(true);
+const GameScene = ( { difficulty, gameOverCallback } ) => {
+    const [startCountdown, setStartCountdown] = useState(5);
+    const [curTilePlaying, setCurTilePlaying] = useState(undefined);
+    const [statusText, setStatusText] = useState("");
+    const [playingSequence, setPlayingSequence] = useState(false);
     const [score, setScore] = useState(0);
+    const [gamePattern, setGamePattern] = useState([]);
+    const [playerGuess, setPlayerGuess] = useState([]);
 
     const columns = {
         display: "grid",
         gridTemplateColumns: `repeat(${difficulty.columns}, minmax(0, 1fr))`,
+    }
+
+    useEffect(() => {
+        if (!playingSequence && (gamePattern.length===0)) {
+            countdownFunc();
+        } else {
+            startPlayingSequence()
+        }
+    }, [startCountdown, gamePattern]);
+
+    function countdownFunc() {
+        setStatusText(`Game starting in ${startCountdown}`)
+        if (startCountdown === 0) {
+            setTimeout(() => {addNew()}, 1000);
+            return;
+        }
+
+        setTimeout(() => {setStartCountdown(startCountdown-1)}, 1000);
+    }
+
+    function startPlayingSequence() {
+        if (playingSequence) {
+            return;
+        }
+
+        setPlayingSequence(true);
+        setStatusText("Playing Pattern...");
+
+        gamePattern.forEach(function (id, i) {
+            const delay = (i+0.5)*1000
+
+            if (i>0 && gamePattern[i-1] === id) {
+                setTimeout(() => {setCurTilePlaying(undefined)}, delay-1);
+            }
+            setTimeout(() => {setCurTilePlaying({id: id, index: i})}, delay);
+        });
+    }
+
+    function stopPlayingSequence() {
+        setStatusText("Repeat the Pattern:");
+        setPlayingSequence(false);
+        setCurTilePlaying(undefined);
+    }
+
+    function addNew() {
+        setGamePattern(gamePattern.concat([Math.floor(Math.random() * (difficulty.tileCount))]));
+    }
+
+    function animationComplete(id) {
+        if (curTilePlaying.index === gamePattern.length-1) {
+            stopPlayingSequence();
+        }
+    }
+
+    function tileClicked(id) {
+        if (playingSequence === true || !gamePattern || gamePattern.length === 0) {
+            return;
+        }
+
+        const compareIndex = playerGuess.length;
+        if (gamePattern[compareIndex] !== id) {
+            setStatusText("INCORRECT");
+            gameOverCallback(score);
+            return;
+        }
+
+        if (compareIndex+1 === gamePattern.length) {
+            addNew();
+            setPlayerGuess([]);
+            setScore(score+1);
+            return
+        } 
+
+        setStatusText("Correct, sequence progress: " + Math.ceil(((compareIndex+1)/gamePattern.length)*100) +"%")
+        setPlayerGuess(playerGuess.concat([id]));
     }
 
     return (
@@ -70,10 +213,13 @@ const GameScene = ( { difficulty } ) => {
                 </SplitRow>
             </section>
             <section className="flex-grow grid w-full place-items-center p-4">
-                <div style={columns} className="gap-4">
-                    {[...new Array(difficulty.tileCount)].map((x, i) => 
-                        <GameTile id={i} />
-                    )}
+                <div>
+                    <h1 className="text-center mb-8 italic font-semibold">{statusText}</h1>
+                    <div style={columns} className="gap-4">
+                        {[...new Array(difficulty.tileCount)].map((x, i) => 
+                            <GameTile onClick={tileClicked} key={i} playingTile={curTilePlaying && curTilePlaying.id} animation={ExpandWobble} id={i} playingTileComplete={animationComplete} />
+                        )}
+                    </div>
                 </div>
             </section>
         </div>

@@ -4,11 +4,13 @@ import GameScene from "./scenes/gameScene"
 import { FadeIn, FadeOut } from "../animations/fadeAnim"
 import { OpenCloseAnimation } from "../animations/animation"
 import GameButton from "./buttons"
+import GameOverScene from "./scenes/gameOverScene"
 
 const Scenes = {
     START: 0,
     DIFFICULTY: 1,
-    GAME: 2
+    GAME: 2,
+    END: 3,
 }
 
 const StartScene = ( { setScene } ) => {
@@ -36,10 +38,16 @@ const StartScene = ( { setScene } ) => {
 const MemorizerGame = () => {
     const [scene, setScene] = useState(Scenes.START);
     const [difficulty, setDifficulty] = useState(undefined);
+    const [recentScore, setRecentScore] = useState(undefined);
 
     function startGame(difficulty) {
         setDifficulty(difficulty);
         setScene(Scenes.GAME);
+    }
+
+    function gameOver(score) {
+        setRecentScore(score);
+        setScene(Scenes.END);
     }
 
     return (
@@ -51,7 +59,10 @@ const MemorizerGame = () => {
                 <DifficultyScene startGame={startGame} />
             }
             {scene===Scenes.GAME &&
-                <GameScene difficulty={difficulty} />
+                <GameScene difficulty={difficulty} gameOverCallback={gameOver} />
+            }
+            {scene===Scenes.END &&
+                <GameOverScene score={recentScore} startOverCallback={() => {setScene(Scenes.DIFFICULTY)}}/>
             }
         </div>
     )
