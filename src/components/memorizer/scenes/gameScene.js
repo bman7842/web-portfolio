@@ -212,9 +212,11 @@ const GameScene = ( { difficulty, gameOverCallback } ) => {
                     <span className="px-2 text-sm">{score}</span>
                 </SplitRow>
             </section>
+            <section className="pt-4">
+                <h1 className="text-center mb-8 italic font-semibold">{statusText}</h1>
+            </section>
             <section className="flex-grow grid w-full place-items-center p-4">
                 <div>
-                    <h1 className="text-center mb-8 italic font-semibold">{statusText}</h1>
                     <div style={columns} className="gap-4">
                         {[...new Array(difficulty.tileCount)].map((x, i) => 
                             <GameTile onClick={tileClicked} key={i} playingTile={curTilePlaying && curTilePlaying.id} animation={ExpandWobble} id={i} playingTileComplete={animationComplete} />
