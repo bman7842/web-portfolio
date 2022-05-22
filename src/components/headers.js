@@ -77,6 +77,7 @@ const NavBar = (props) => {
                 <DropDownNavButton to="/projects/" label="projects" selected={selected} text="Projects">
                     <DropDownNavSubButton to="http://doogle-env.eba-ugdmui76.us-east-2.elasticbeanstalk.com/?fbclid=IwAR3i-uJEDm83RSc1RC_30G6tobT-RSIVlVBh7Ta4lQXopzNVcP1h33k-ywE" label="doogle" selected={selected} subcat={subcat}>doogle</DropDownNavSubButton>
                     <DropDownNavSubButton to="/projects/memorizer/" label="memorizer" selected={selected} subcat={subcat}>memorizer</DropDownNavSubButton>
+                    <DropDownNavSubButton to="https://www.herkymap.com/" label="herkymap" selected={selected} subcat={subcat}>herkymap</DropDownNavSubButton>
                 </DropDownNavButton>
                 <NavButton to="/portfolio/" label="portfolio" selected={selected}>Portfolio</NavButton>
                 <NavButton to="/contact/" label="contact" selected={selected}>Contact</NavButton>

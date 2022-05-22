@@ -1,5 +1,7 @@
 import MemorizerSC from "../images/memorizer_sc.png"
 import DoogleSC from "../images/doogle_sample.png"
+import HerkyImg from "../images/herky.jpg"
+import StickyNoteImg from "../images/sticky_note.png"
 
 export const projectInfo = [
     [
@@ -23,6 +25,24 @@ export const projectInfo = [
                 label: "try out",
                 link: "/projects/memorizer/"
             }
+        }
+    ],
+    [
+        {
+            title: "HerkyMap",
+            img: HerkyImg,
+            body: "*IN PROGRESS* An interactive site built with NextJS for viewing and updating information regarding the various Herky statues around the area. Hosted with Vercel!",
+            button: {
+                label: "try out",
+                link: "https://www.herkymap.com/"
+            }
+        }
+    ],
+    [
+        {
+            title: "StickyBoard",
+            img: StickyNoteImg,
+            body: "*IN PROGRESS* A site designed to provide the 'whiteboarding' meeting experience to the web!",
         }
     ]
 ]

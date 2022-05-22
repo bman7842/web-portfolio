@@ -79,7 +79,7 @@ const GameTile = ( { id, playingTile, playingTileComplete, onClick } ) => {
     if (playingTile === id) {
         return (
             <AnimationDiv animation={PartialWobble} callback={() => {playingTileComplete(id)}}>
-                <button style={color} className="w-16 h-16 rounded border border-black" />
+                <button style={color} className="w-16 h-16 rounded border border-black"></button>
             </AnimationDiv>
         )
     }
@@ -124,14 +124,6 @@ const GameScene = ( { difficulty, gameOverCallback } ) => {
         display: "grid",
         gridTemplateColumns: `repeat(${difficulty.columns}, minmax(0, 1fr))`,
     }
-
-    useEffect(() => {
-        if (!playingSequence && (gamePattern.length===0)) {
-            countdownFunc();
-        } else {
-            startPlayingSequence()
-        }
-    }, [startCountdown, gamePattern]);
 
     function countdownFunc() {
         setStatusText(`Game starting in ${startCountdown}`)
@@ -199,6 +191,14 @@ const GameScene = ( { difficulty, gameOverCallback } ) => {
         setStatusText("Correct, sequence progress: " + Math.ceil(((compareIndex+1)/gamePattern.length)*100) +"%")
         setPlayerGuess(playerGuess.concat([id]));
     }
+
+    useEffect(() => {
+        if (!playingSequence && (gamePattern.length===0)) {
+            countdownFunc();
+        } else {
+            startPlayingSequence()
+        }
+    }, [startCountdown, gamePattern]);
 
     return (
         <div className="h-full flex flex-col">
