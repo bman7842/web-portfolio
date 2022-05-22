@@ -16,7 +16,7 @@ const MainFooter = () => {
                         </a>
                     </div>
                     <div class="inline-flex w-6 mx-4">
-                        <a href="https://github.com/bmanTM" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/brandonegg" target="_blank" rel="noopener noreferrer">
                         <StaticImage src="../images/github_logo.svg" class=""/>
                         </a>
                     </div>
