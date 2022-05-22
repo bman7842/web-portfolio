@@ -43,7 +43,13 @@ const PartialWobble = new Animation(PartialWobbleDur, styled.div`
     }
 `)
 
-const colorList = ["red", "green", "blue", "yellow"];
+/**
+ * See if we can automate this?
+ */
+const colorList = ["#ff0000", "#54a832", "#0015ff", "#ffee00", "#924E7D", "#fc3d03", "#00ffb3", "#1E2460", "#332F2C", 
+                   "#193737", "#A98307", "#84C3BE", "#8F8B66", "#8E402A", "#231A24", "#063971", "#E6D690", "#8D948D",
+                   "#84C3BE", "#FF7514", "#5E2129", "#89AC76", "#497E76", "#D36E70", "#26252D", "#8673A1", "#A12312",
+                   "#955F20", "#F4A900", "#6A5F31", "#F75E25", "#57A639", "#7FB5B5", "#B32821", "#CF3476", "#606E8C"];
 
 const TileDivHoverClick = styled.button`
     transition-property: transform;
@@ -99,15 +105,6 @@ const SplitRow = ( {children} ) => {
             {children}
         </div>
     )
-}
-
-function comparePatten(pattern1, pattern2) {
-    return (
-        pattern1.length === pattern2.length &&
-        pattern1.every(function (element, index) {
-            return element === pattern2[index];
-        })
-    );
 }
 
 /**

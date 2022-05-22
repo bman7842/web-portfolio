@@ -12,7 +12,7 @@ const GameOverScene = ({score, startOverCallback}) => {
         <div className="h-full w-full grid place-items-center">
             <div className="flex flex-col w-full space-y-6">
                 <TextOutline className="text-center font-extrabold text-5xl text-red-500">GAME OVER</TextOutline>
-                <h2 className="text-center"><span className="text-gray-600 italic">Score:</span> {score}</h2>
+                <h2 className="text-center text-xl"><span className="text-gray-600 italic">Score:</span> {score}</h2>
                 <GameButton onClick={startOverCallback} text="Play Again"/>
             </div>
         </div>
