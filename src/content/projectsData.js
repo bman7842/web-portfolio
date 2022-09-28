@@ -12,7 +12,7 @@ export const projectInfo = [
             type: "default",
             button: {
                 label: "try out",
-                link: "http://doogle-env.eba-ugdmui76.us-east-2.elasticbeanstalk.com/?fbclid=IwAR3i-uJEDm83RSc1RC_30G6tobT-RSIVlVBh7Ta4lQXopzNVcP1h33k-ywE"
+                link: "https://github.com/brandonegg/doogle"
             }
         }
     ],
@@ -36,9 +36,7 @@ export const projectInfo = [
                 label: "try out",
                 link: "https://www.herkymap.com/"
             }
-        }
-    ],
-    [
+        },
         {
             title: "StickyBoard",
             img: StickyNoteImg,
