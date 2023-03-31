@@ -2,6 +2,7 @@ import MemorizerSC from "../images/memorizer_sc.png"
 import DoogleSC from "../images/doogle_sample.png"
 import HerkyImg from "../images/herky.jpg"
 import StickyNoteImg from "../images/sticky_note.png"
+import TempboxCollage from "../images/tempbox_collage.png"
 
 export const projectInfo = [
     [
@@ -11,7 +12,7 @@ export const projectInfo = [
             body: "A search engine designed to only show results relating to dogs - and a random activity (since you're probably bored if you're looking up dog photos). Built with a React frontend and KoaJS backend. This was a project for an internship at PeachPay! Hosting with AWS",
             type: "default",
             button: {
-                label: "try out",
+                label: "view source",
                 link: "https://github.com/brandonegg/doogle"
             }
         }
@@ -24,6 +25,17 @@ export const projectInfo = [
             button: {
                 label: "try out",
                 link: "/projects/memorizer/"
+            }
+        }
+    ],
+    [
+        {
+            title: "IOT Temperature Probe",
+            img: TempboxCollage,
+            body: "Wireless temperature probe interface built with the ESP32. Provides a flutter based monitoring application to view temperature data remotely. Includes Twilio text alerts.",
+            button: {
+                label: "view source",
+                link: "https://github.com/brandonegg/tempProbe"
             }
         }
     ],
